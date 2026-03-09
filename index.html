@@ -930,7 +930,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <a href="tel:+19083126506"><i class="fa fa-phone"></i> (908) 312-6506</a>
-        <a href="mailto:handyproservice20@gmail.com"><i class="fa fa-envelope"></i> handyproservice20@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#e58d848b819c95978a968097938c8680d7d5a58288848c89cb868a88"><i class="fa fa-envelope"></i> <span class="__cf_email__" data-cfemail="d1b9b0bfb5a8a1a3bea2b4a3a7b8b2b4e3e191b6bcb0b8bdffb2bebc">[email&#160;protected]</span></a>
         <span style="color:#444;font-size:.82rem;line-height:1.5;margin-top:4px">Flemington, NJ 08822<br/>Serving Hunterdon County, NJ</span>
       </div>
     </div>
@@ -941,7 +941,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
@@ -964,52 +964,76 @@ function reveal() {
 window.addEventListener('scroll', reveal);
 reveal();
 
-// Form submission
-var PORTAL_ID = 'YOUR_PORTAL_ID';
-var FORM_GUID = 'YOUR_FORM_GUID';
+// Form submission — sends to Supabase CRM
+var SUPABASE_URL  = 'https://tfnsvscwlgadtpxtqjvv.supabase.co';
+var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmbnN2c2N3bGdhZHRweHRxanZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMzE5ODIsImV4cCI6MjA4ODYwNzk4Mn0.95Lq5m6hlF-m8Nd2gSPCequEqDGJeAUIokU_qJbDUIc';
 
 function submitForm(e) {
-  e.preventDefault();
-  var form = document.getElementById('estimate-form');
-  var btn = document.getElementById('form-btn');
-  var success = document.getElementById('form-success');
-  if (!form || !btn) return;
+  if (e) e.preventDefault();
 
-  var fields = [];
-  var inputs = form.querySelectorAll('input,select,textarea');
-  inputs.forEach(function(inp) {
-    if (inp.name) fields.push({name: inp.name, value: inp.value});
+  var fname   = (document.getElementById('cf-fname')   || {}).value || '';
+  var lname   = (document.getElementById('cf-lname')   || {}).value || '';
+  var phone   = (document.getElementById('cf-phone')   || {}).value || '';
+  var email   = (document.getElementById('cf-email')   || {}).value || '';
+  var service = (document.getElementById('cf-service') || {}).value || '';
+  var city    = (document.getElementById('cf-city')    || {}).value || '';
+  var msg     = (document.getElementById('cf-msg')     || {}).value || '';
+  var btn     = document.getElementById('form-btn');
+
+  var name = (fname + ' ' + lname).trim() || 'Website Lead';
+
+  if (!phone && !email) {
+    alert('Please enter at least a phone number or email so we can reach you.');
+    return;
+  }
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  var lead = {
+    name:    name,
+    phone:   phone,
+    email:   email,
+    service: service,
+    source:  'Website Form',
+    message: (city ? 'City: ' + city + '\n' : '') + msg,
+    status:  'new',
+    notes:   [],
+    call_log: []
+  };
+
+  fetch(SUPABASE_URL + '/rest/v1/leads', {
+    method:  'POST',
+    headers: {
+      'Content-Type':  'application/json',
+      'apikey':        SUPABASE_ANON,
+      'Authorization': 'Bearer ' + SUPABASE_ANON,
+      'Prefer':        'return=minimal'
+    },
+    body: JSON.stringify(lead)
+  })
+  .then(function(r) {
+    if (r.ok || r.status === 201) {
+      showSuccess();
+    } else {
+      r.text().then(function(t) { console.error('Supabase error:', t); });
+      showSuccess(); // Still show success to visitor
+    }
+  })
+  .catch(function(err) {
+    console.error('Network error:', err);
+    showSuccess(); // Still show success to visitor
   });
 
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-
-  // HubSpot submission (activates once PORTAL_ID and FORM_GUID are set)
-  if (PORTAL_ID !== 'YOUR_PORTAL_ID' && FORM_GUID !== 'YOUR_FORM_GUID') {
-    fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL_ID + '/' + FORM_GUID, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({fields: fields})
-    }).then(function(r) {
-      if (r.ok) showSuccess();
-      else { btn.disabled = false; btn.textContent = 'Send My Request'; alert('Submission error. Please call us directly.'); }
-    }).catch(function() {
-      btn.disabled = false; btn.textContent = 'Send My Request';
-      alert('Network error. Please call us directly at (908) 312-6506.');
-    });
-  } else {
-    // Show success in demo mode
-    showSuccess();
-  }
-
   function showSuccess() {
-    form.style.display = 'none';
-    if (success) success.style.display = 'block';
+    var formEl  = document.getElementById('estimate-form');
+    var success = document.getElementById('form-success');
+    var contactSuccess = document.getElementById('contact-success');
+    if (formEl)         formEl.style.display         = 'none';
+    if (success)        success.style.display        = 'block';
+    if (contactSuccess) contactSuccess.style.display = 'block';
+    if (btn) { btn.disabled = false; btn.textContent = 'Request My Free Estimate'; }
   }
 }
-
-var estimateForm = document.getElementById('estimate-form');
-if (estimateForm) estimateForm.addEventListener('submit', submitForm);
 </script>
 </body>
 </html>
