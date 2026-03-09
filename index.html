@@ -930,7 +930,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <a href="tel:+19083126506"><i class="fa fa-phone"></i> (908) 312-6506</a>
-        <a href="/cdn-cgi/l/email-protection#b4dcd5dad0cdc4c6dbc7d1c6c2ddd7d18684f4d3d9d5ddd89ad7dbd9" style="font-size:.82rem"><i class="fa fa-envelope"></i> <span class="__cf_email__" data-cfemail="2f474e414b565f5d405c4a5d59464c4a1d1f6f48424e4643014c4042">[email&#160;protected]</span></a>
+        <a href="mailto:handyproservice20@gmail.com"><i class="fa fa-envelope"></i> handyproservice20@gmail.com</a>
         <span style="color:#444;font-size:.82rem;line-height:1.5;margin-top:4px">Flemington, NJ 08822<br/>Serving Hunterdon County, NJ</span>
       </div>
     </div>
@@ -941,10 +941,75 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   var el = document.getElementById('nav-' + name);
-  if (el) el.classL
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// Scroll reveal
+function reveal() {
+  var els = document.querySelectorAll('.reveal');
+  els.forEach(function(el) {
+    var rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      el.classList.add('visible');
+    }
+  });
+}
+window.addEventListener('scroll', reveal);
+reveal();
+
+// Form submission
+var PORTAL_ID = 'YOUR_PORTAL_ID';
+var FORM_GUID = 'YOUR_FORM_GUID';
+
+function submitForm(e) {
+  e.preventDefault();
+  var form = document.getElementById('estimate-form');
+  var btn = document.getElementById('form-btn');
+  var success = document.getElementById('form-success');
+  if (!form || !btn) return;
+
+  var fields = [];
+  var inputs = form.querySelectorAll('input,select,textarea');
+  inputs.forEach(function(inp) {
+    if (inp.name) fields.push({name: inp.name, value: inp.value});
+  });
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  // HubSpot submission (activates once PORTAL_ID and FORM_GUID are set)
+  if (PORTAL_ID !== 'YOUR_PORTAL_ID' && FORM_GUID !== 'YOUR_FORM_GUID') {
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL_ID + '/' + FORM_GUID, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({fields: fields})
+    }).then(function(r) {
+      if (r.ok) showSuccess();
+      else { btn.disabled = false; btn.textContent = 'Send My Request'; alert('Submission error. Please call us directly.'); }
+    }).catch(function() {
+      btn.disabled = false; btn.textContent = 'Send My Request';
+      alert('Network error. Please call us directly at (908) 312-6506.');
+    });
+  } else {
+    // Show success in demo mode
+    showSuccess();
+  }
+
+  function showSuccess() {
+    form.style.display = 'none';
+    if (success) success.style.display = 'block';
+  }
+}
+
+var estimateForm = document.getElementById('estimate-form');
+if (estimateForm) estimateForm.addEventListener('submit', submitForm);
+</script>
+</body>
+</html>
