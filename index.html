@@ -302,7 +302,18 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
           <option>General Home Improvement</option><option>Other</option>
         </select>
       </div>
-      <div class="form-field"><input type="text" placeholder="Your City / Town in NJ"/></div>
+      <div class="form-field">
+        <select>
+          <option disabled selected>Your Town / City in NJ</option>
+          <option>Flemington</option><option>Clinton</option><option>Annandale</option>
+          <option>High Bridge</option><option>Hampton</option><option>Glen Gardner</option>
+          <option>Whitehouse</option><option>Whitehouse Station</option><option>Califon</option>
+          <option>Lebanon</option><option>Pottersville</option><option>Raritan Township</option>
+          <option>Readington</option><option>Tewksbury</option><option>Alexandria</option>
+          <option>Bethlehem Twp</option><option>Holland Twp</option><option>Kingwood Twp</option>
+          <option>Union Twp</option><option>Other (Hunterdon County)</option>
+        </select>
+      </div>
       <button onclick="showPage('contact')" class="btn btn-orange" style="width:100%;justify-content:center"><i class="fa fa-arrow-right"></i> Get My Free Estimate</button>
       <p class="form-note">No spam. No obligation. 100% free.</p>
     </div>
@@ -860,8 +871,17 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
               <option>Deck or Patio Construction</option><option>Basement Finishing</option>
               <option>Flooring</option><option>General Home Improvement</option><option>Other</option>
             </select>
-            <label class="contact-label">Your City / Town in NJ *</label>
-            <input type="text" id="cf-city" placeholder="Flemington, NJ" class="contact-input"/>
+            <label class="contact-label">Your Town / City in NJ *</label>
+            <select id="cf-city" class="contact-input">
+              <option disabled selected>Select your town...</option>
+              <option>Flemington</option><option>Clinton</option><option>Annandale</option>
+              <option>High Bridge</option><option>Hampton</option><option>Glen Gardner</option>
+              <option>Whitehouse</option><option>Whitehouse Station</option><option>Califon</option>
+              <option>Lebanon</option><option>Pottersville</option><option>Raritan Township</option>
+              <option>Readington</option><option>Tewksbury</option><option>Alexandria</option>
+              <option>Bethlehem Twp</option><option>Holland Twp</option><option>Kingwood Twp</option>
+              <option>Union Twp</option><option>Other (Hunterdon County)</option>
+            </select>
             <label class="contact-label">Tell Us About Your Project</label>
             <textarea id="cf-msg" rows="4" placeholder="Briefly describe your project, timeline, and any questions..." class="contact-input" style="resize:vertical"></textarea>
             <button onclick="submitForm()" class="btn btn-orange" style="width:100%;justify-content:center;font-size:1rem;padding:15px;margin-top:4px"><i class="fa fa-arrow-right"></i> Request My Free Estimate</button>
@@ -878,7 +898,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
           <div class="contact-info-card">
             <h4>Contact Information</h4>
             <div class="contact-row"><div class="contact-icon"><i class="fa fa-phone"></i></div><div><div class="contact-row-label">Phone</div><a href="tel:+19083126506" class="contact-row-val">(908) 312-6506</a></div></div>
-            <div class="contact-row"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><div class="contact-row-label">Email</div><a href="/cdn-cgi/l/email-protection#bcd4ddd2d8c5ccced3cfd9cecad5dfd98e8cfcdbd1ddd5d092dfd3d1" class="contact-row-val" style="font-size:.82rem"><span class="__cf_email__" data-cfemail="4f272e212b363f3d203c2a3d39262c2a7d7f0f28222e2623612c2022">[email&#160;protected]</span></a></div></div>
+            <div class="contact-row"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><div class="contact-row-label">Email</div><a href="mailto:handyproservice20@gmail.com" class="contact-row-val" style="font-size:.82rem">handyproservice20@gmail.com</a></div></div>
             <div class="contact-row"><div class="contact-icon"><i class="fa fa-map-marker-alt"></i></div><div><div class="contact-row-label">Service Area</div><div style="color:#ccc;font-size:.9rem">Flemington &amp; Clinton, NJ<br/>All of Hunterdon County</div></div></div>
             <div class="contact-row" style="margin-bottom:0"><div class="contact-icon"><i class="fa fa-clock"></i></div><div><div class="contact-row-label">Hours</div><div style="color:#ccc;font-size:.9rem">Mon–Fri: 7:00 AM – 6:00 PM<br/>Sat: By Appointment</div></div></div>
           </div>
@@ -930,7 +950,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <a href="tel:+19083126506"><i class="fa fa-phone"></i> (908) 312-6506</a>
-        <a href="/cdn-cgi/l/email-protection#e58d848b819c95978a968097938c8680d7d5a58288848c89cb868a88"><i class="fa fa-envelope"></i> <span class="__cf_email__" data-cfemail="d1b9b0bfb5a8a1a3bea2b4a3a7b8b2b4e3e191b6bcb0b8bdffb2bebc">[email&#160;protected]</span></a>
+        <a href="mailto:handyproservice20@gmail.com"><i class="fa fa-envelope"></i> handyproservice20@gmail.com</a>
         <span style="color:#444;font-size:.82rem;line-height:1.5;margin-top:4px">Flemington, NJ 08822<br/>Serving Hunterdon County, NJ</span>
       </div>
     </div>
@@ -941,7 +961,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
