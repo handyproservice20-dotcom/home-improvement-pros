@@ -898,7 +898,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
           <div class="contact-info-card">
             <h4>Contact Information</h4>
             <div class="contact-row"><div class="contact-icon"><i class="fa fa-phone"></i></div><div><div class="contact-row-label">Phone</div><a href="tel:+19083126506" class="contact-row-val">(908) 312-6506</a></div></div>
-            <div class="contact-row"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><div class="contact-row-label">Email</div><a href="/cdn-cgi/l/email-protection#f79f9699938e878598849285819e9492c5c7b7909a969e9bd994989a" class="contact-row-val" style="font-size:.82rem"><span class="__cf_email__" data-cfemail="8ae2ebe4eef3faf8e5f9eff8fce3e9efb8bacaede7ebe3e6a4e9e5e7">[email&#160;protected]</span></a></div></div>
+            <div class="contact-row"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><div class="contact-row-label">Email</div><a href="mailto:handyproservice20@gmail.com" class="contact-row-val" style="font-size:.82rem">handyproservice20@gmail.com</a></div></div>
             <div class="contact-row"><div class="contact-icon"><i class="fa fa-map-marker-alt"></i></div><div><div class="contact-row-label">Service Area</div><div style="color:#ccc;font-size:.9rem">Flemington &amp; Clinton, NJ<br/>All of Hunterdon County</div></div></div>
             <div class="contact-row" style="margin-bottom:0"><div class="contact-icon"><i class="fa fa-clock"></i></div><div><div class="contact-row-label">Hours</div><div style="color:#ccc;font-size:.9rem">Mon–Fri: 7:00 AM – 6:00 PM<br/>Sat: By Appointment</div></div></div>
           </div>
@@ -950,7 +950,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <a href="tel:+19083126506"><i class="fa fa-phone"></i> (908) 312-6506</a>
-        <a href="/cdn-cgi/l/email-protection#ee868f808a979e9c819d8b9c98878d8bdcdeae89838f8782c08d8183"><i class="fa fa-envelope"></i> <span class="__cf_email__" data-cfemail="4129202f253831332e32243337282224737101262c20282d6f222e2c">[email&#160;protected]</span></a>
+        <a href="mailto:handyproservice20@gmail.com"><i class="fa fa-envelope"></i> handyproservice20@gmail.com</a>
         <span style="color:#444;font-size:.82rem;line-height:1.5;margin-top:4px">Flemington, NJ 08822<br/>Serving Hunterdon County, NJ</span>
       </div>
     </div>
@@ -961,7 +961,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
@@ -1048,4 +1048,12 @@ function submitForm(e) {
 
   function showSuccess() {
     var formEl  = document.getElementById('estimate-form');
-    var success = document
+    var success = document.getElementById('contact-success');
+    if (formEl)  formEl.style.display  = 'none';
+    if (success) success.style.display = 'block';
+    if (btn) { btn.disabled = false; btn.textContent = 'Request My Free Estimate'; }
+  }
+}
+</script>
+</body>
+</html>
