@@ -1049,8 +1049,9 @@ function submitForm(e) {
     }
   })
   .catch(function(err) {
-    console.error('Network error:ss();
-  }
+    console.error('Network error:', err);
+    showSuccess();
+  });
 
   function showSuccess() {
     var formEl  = document.getElementById('estimate-form');
