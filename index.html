@@ -283,39 +283,46 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
       </div>
       <div class="hero-chips">
         <span class="hero-chip"><i class="fa fa-check-circle"></i> NJ HIC Licensed</span>
-        <span class="hero-chip"><i class="fa fa-check-circle"></i> Fully Insured</span>
+        <span class="hero-chip"><i class="fa fa-check-circle"></i> 5-Star Rated</span>
         <span class="hero-chip"><i class="fa fa-check-circle"></i> Free Estimates</span>
         <span class="hero-chip"><i class="fa fa-check-circle"></i> 15+ Years Local</span>
       </div>
     </div>
     <div class="hero-form">
-      <h3>Get Your Free Estimate</h3>
-      <p>We'll call you within 1 business day.</p>
-      <div class="form-field"><input type="text" placeholder="Your Full Name"/></div>
-      <div class="form-field"><input type="tel" placeholder="Phone Number"/></div>
-      <div class="form-field">
-        <select>
-          <option disabled selected>What can we help with?</option>
-          <option>Kitchen Remodel</option><option>Bathroom Renovation</option>
-          <option>Interior / Exterior Painting</option><option>Deck or Patio</option>
-          <option>Flooring</option><option>Basement Finishing</option>
-          <option>General Home Improvement</option><option>Other</option>
-        </select>
+      <div id="hero-form-inner">
+        <h3>Get Your Free Estimate</h3>
+        <p>We'll call you within 1 business day.</p>
+        <div class="form-field"><input id="hf-name" type="text" placeholder="Your Full Name"/></div>
+        <div class="form-field"><input id="hf-phone" type="tel" placeholder="Phone Number"/></div>
+        <div class="form-field">
+          <select id="hf-service">
+            <option disabled selected>What can we help with?</option>
+            <option>Kitchen Remodel</option><option>Bathroom Renovation</option>
+            <option>Interior / Exterior Painting</option><option>Deck or Patio</option>
+            <option>Flooring</option><option>Basement Finishing</option>
+            <option>General Home Improvement</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <select id="hf-city">
+            <option disabled selected>Your Town / City in NJ</option>
+            <option>Flemington</option><option>Clinton</option><option>Annandale</option>
+            <option>High Bridge</option><option>Hampton</option><option>Glen Gardner</option>
+            <option>Whitehouse</option><option>Whitehouse Station</option><option>Califon</option>
+            <option>Lebanon</option><option>Pottersville</option><option>Raritan Township</option>
+            <option>Readington</option><option>Tewksbury</option><option>Alexandria</option>
+            <option>Bethlehem Twp</option><option>Holland Twp</option><option>Kingwood Twp</option>
+            <option>Union Twp</option><option>Other (Hunterdon County)</option>
+          </select>
+        </div>
+        <button id="hf-btn" onclick="submitHeroForm()" class="btn btn-orange" style="width:100%;justify-content:center"><i class="fa fa-arrow-right"></i> Get My Free Estimate</button>
+        <p class="form-note">No spam. No obligation. 100% free.</p>
       </div>
-      <div class="form-field">
-        <select>
-          <option disabled selected>Your Town / City in NJ</option>
-          <option>Flemington</option><option>Clinton</option><option>Annandale</option>
-          <option>High Bridge</option><option>Hampton</option><option>Glen Gardner</option>
-          <option>Whitehouse</option><option>Whitehouse Station</option><option>Califon</option>
-          <option>Lebanon</option><option>Pottersville</option><option>Raritan Township</option>
-          <option>Readington</option><option>Tewksbury</option><option>Alexandria</option>
-          <option>Bethlehem Twp</option><option>Holland Twp</option><option>Kingwood Twp</option>
-          <option>Union Twp</option><option>Other (Hunterdon County)</option>
-        </select>
+      <div id="hero-form-success" style="display:none;text-align:center;padding:20px 0">
+        <div style="font-size:2.5rem;color:var(--orange);margin-bottom:12px"><i class="fa fa-circle-check"></i></div>
+        <h3 style="font-size:1.3rem;margin-bottom:8px">We Got Your Request!</h3>
+        <p style="color:#999;font-size:.88rem;line-height:1.6">Thanks! We'll call you within 1 business day to set up your free estimate.</p>
       </div>
-      <button onclick="showPage('contact')" class="btn btn-orange" style="width:100%;justify-content:center"><i class="fa fa-arrow-right"></i> Get My Free Estimate</button>
-      <p class="form-note">No spam. No obligation. 100% free.</p>
     </div>
   </div>
 
@@ -522,7 +529,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
   <div class="trust-bar">
     <div class="trust-item"><i class="fa fa-certificate"></i> NJ HIC Licensed</div>
     <div class="trust-divider"></div>
-    <div class="trust-item"><i class="fa fa-shield-halved"></i> Fully Insured</div>
+    <div class="trust-item"><i class="fa fa-star"></i> 5-Star Rated</div>
     <div class="trust-divider"></div>
     <div class="trust-item"><i class="fa fa-file-contract"></i> Free Written Estimates</div>
     <div class="trust-divider"></div>
@@ -650,7 +657,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
     <div class="trust-divider"></div>
     <div class="trust-item"><i class="fa fa-certificate"></i> NJ HIC Licensed</div>
     <div class="trust-divider"></div>
-    <div class="trust-item"><i class="fa fa-shield-halved"></i> Fully Insured</div>
+    <div class="trust-item"><i class="fa fa-star"></i> 5-Star Rated</div>
     <div class="trust-divider"></div>
     <div class="trust-item"><i class="fa fa-map-marker-alt"></i> Hunterdon County, NJ</div>
   </div>
@@ -898,7 +905,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
           <div class="contact-info-card">
             <h4>Contact Information</h4>
             <div class="contact-row"><div class="contact-icon"><i class="fa fa-phone"></i></div><div><div class="contact-row-label">Phone</div><a href="tel:+19083126506" class="contact-row-val">(908) 312-6506</a></div></div>
-            <div class="contact-row"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><div class="contact-row-label">Email</div><a href="mailto:handyproservice20@gmail.com" class="contact-row-val" style="font-size:.82rem">handyproservice20@gmail.com</a></div></div>
+            <div class="contact-row"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><div class="contact-row-label">Email</div><a href="/cdn-cgi/l/email-protection#dcb4bdb2b8a5acaeb3afb9aeaab5bfb9eeec9cbbb1bdb5b0f2bfb3b1" class="contact-row-val" style="font-size:.82rem"><span class="__cf_email__" data-cfemail="ea828b848e939a9885998f989c83898fd8daaa8d878b8386c4898587">[email&#160;protected]</span></a></div></div>
             <div class="contact-row"><div class="contact-icon"><i class="fa fa-map-marker-alt"></i></div><div><div class="contact-row-label">Service Area</div><div style="color:#ccc;font-size:.9rem">Flemington &amp; Clinton, NJ<br/>All of Hunterdon County</div></div></div>
             <div class="contact-row" style="margin-bottom:0"><div class="contact-icon"><i class="fa fa-clock"></i></div><div><div class="contact-row-label">Hours</div><div style="color:#ccc;font-size:.9rem">Mon–Fri: 7:00 AM – 6:00 PM<br/>Sat: By Appointment</div></div></div>
           </div>
@@ -950,7 +957,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <a href="tel:+19083126506"><i class="fa fa-phone"></i> (908) 312-6506</a>
-        <a href="mailto:handyproservice20@gmail.com"><i class="fa fa-envelope"></i> handyproservice20@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#bdd5dcd3d9c4cdcfd2ced8cfcbd4ded88f8dfddad0dcd4d193ded2d0"><i class="fa fa-envelope"></i> <span class="__cf_email__" data-cfemail="660e0708021f161409150314100f0503545626010b070f0a4805090b">[email&#160;protected]</span></a>
         <span style="color:#444;font-size:.82rem;line-height:1.5;margin-top:4px">Flemington, NJ 08822<br/>Serving Hunterdon County, NJ</span>
       </div>
     </div>
@@ -961,7 +968,7 @@ footer{background:#000;color:#888;padding:60px 40px 28px;border-top:1px solid #1
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
@@ -1042,9 +1049,8 @@ function submitForm(e) {
     }
   })
   .catch(function(err) {
-    console.error('Network error:', err);
-    showSuccess(); // Still show success to visitor
-  });
+    console.error('Network error:ss();
+  }
 
   function showSuccess() {
     var formEl  = document.getElementById('estimate-form');
@@ -1053,6 +1059,52 @@ function submitForm(e) {
     if (success) success.style.display = 'block';
     if (btn) { btn.disabled = false; btn.textContent = 'Request My Free Estimate'; }
   }
+}
+
+function submitHeroForm() {
+  var name    = (document.getElementById('hf-name')    || {}).value || '';
+  var phone   = (document.getElementById('hf-phone')   || {}).value || '';
+  var service = (document.getElementById('hf-service') || {}).value || '';
+  var city    = (document.getElementById('hf-city')    || {}).value || '';
+  var btn     = document.getElementById('hf-btn');
+
+  if (!name && !phone) {
+    alert('Please enter your name and phone number so we can reach you.');
+    return;
+  }
+
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Sending…'; }
+
+  var lead = {
+    name:     name || 'Website Lead',
+    phone:    phone,
+    service:  service,
+    address:  city,
+    source:   'Website Hero Form',
+    status:   'new',
+    notes:    [],
+    call_log: [],
+    activity: []
+  };
+
+  fetch(SUPABASE_URL + '/rest/v1/leads', {
+    method:  'POST',
+    headers: {
+      'Content-Type':  'application/json',
+      'apikey':        SUPABASE_ANON,
+      'Authorization': 'Bearer ' + SUPABASE_ANON,
+      'Prefer':        'return=minimal'
+    },
+    body: JSON.stringify(lead)
+  })
+  .then(function() {
+    document.getElementById('hero-form-inner').style.display = 'none';
+    document.getElementById('hero-form-success').style.display = 'block';
+  })
+  .catch(function() {
+    document.getElementById('hero-form-inner').style.display = 'none';
+    document.getElementById('hero-form-success').style.display = 'block';
+  });
 }
 </script>
 </body>
